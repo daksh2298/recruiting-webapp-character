@@ -6,6 +6,8 @@ import AppContext, {
 import axiosInstance from "../api/axiosInstance";
 import { GitHubUsername } from "../consts";
 
+// This hooks contains functions to save all data, add a new character, and
+// generic functions to update the character attributes and skills.
 export default function useAppContext() {
   const {
     characters,

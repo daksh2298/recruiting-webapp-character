@@ -64,6 +64,8 @@ export const AppContextProvider = ({ children }) => {
       setCharacterSkills(characterSkillsResp);
     }
   };
+
+  // Effect to fetch the saved data from the server on initial load.
   useEffect(() => {
     getSavedData();
   }, []);

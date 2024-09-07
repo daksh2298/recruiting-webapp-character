@@ -4,6 +4,7 @@ import { CLASS_LIST } from "../../consts";
 
 const BaseSkillPointsToSpend = 10;
 
+// This hook is used to perform character specific operations, such as updating attributes and skills.
 export function useCharacterSheet(character) {
   const {
     characterAttributes,
