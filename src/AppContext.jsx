@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { ATTRIBUTE_LIST, SKILL_LIST } from "./consts";
+import { ATTRIBUTE_LIST, GitHubUsername, SKILL_LIST } from "./consts";
+import axiosInstance from "./api/axiosInstance";
 
 const AppContext = React.createContext(null);
 
@@ -38,6 +39,24 @@ export const AppContextProvider = ({ children }) => {
       return acc;
     }, {});
     setCharacterSkills(charSkills);
+  }, []);
+
+  const getSavedData = async () => {
+    const response = await axiosInstance.get(`{${GitHubUsername}}/character`);
+
+    if (response.data.body) {
+      const {
+        characters: charactersResp,
+        characterAttributes: characterAttributesResp,
+        characterSkills: characterSkillsResp,
+      } = response.data.body;
+      setCharacters(charactersResp);
+      setCharacterAttributes(characterAttributesResp);
+      setCharacterSkills(characterSkillsResp);
+    }
+  };
+  useEffect(() => {
+    getSavedData();
   }, []);
 
   console.log({ characters, characterAttributes, characterSkills });

@@ -3,11 +3,22 @@ import { useCharacterSheet } from "./hooks/useCharacterSheet";
 import { ATTRIBUTE_LIST } from "../consts";
 import { AttributeItem, AttributesContainer } from "./components";
 
+const MAX_TOTAL_ATTRIBUTE_POINTS = 70;
+
 const Attributes = ({ character }) => {
   const { attributes, attributeModifiers, updateAttribute } =
     useCharacterSheet(character);
 
+  const totalAttributePoints = Object.values(attributes || {}).reduce(
+    (acc, curr) => acc + curr,
+    0
+  );
+
   const handleAttributeIncreaseCurry = (attributeName) => () => {
+    if (totalAttributePoints >= MAX_TOTAL_ATTRIBUTE_POINTS) {
+      alert("A Character can have up to 70 Delegated Attribute Points.");
+      return;
+    }
     updateAttribute(attributeName, attributes[attributeName] + 1);
   };
 

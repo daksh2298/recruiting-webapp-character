@@ -2,6 +2,8 @@ import useAppContext from "../../hooks/useAppContext";
 import { useMemo } from "react";
 import { CLASS_LIST } from "../../consts";
 
+const BaseSkillPointsToSpend = 10;
+
 export function useCharacterSheet(character) {
   const {
     characterAttributes,
@@ -38,6 +40,12 @@ export function useCharacterSheet(character) {
     }, {});
   }, [classes, attributes]);
 
+  const intelligenceModifier = attributeModifiers["Intelligence"] || 0;
+
+  const availableSkillPoints = useMemo(() => {
+    return BaseSkillPointsToSpend + 4 * intelligenceModifier;
+  }, [intelligenceModifier]);
+
   return {
     attributes,
     skills,
@@ -45,5 +53,6 @@ export function useCharacterSheet(character) {
     qualifiedClassesMap,
     updateAttribute,
     updateSkill,
+    availableSkillPoints,
   };
 }
