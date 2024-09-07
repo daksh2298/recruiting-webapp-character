@@ -30,7 +30,6 @@ const CharacterSheetWrapper = ({ character }) => {
   return (
     <Wrapper>
       <span className={"character-header"}>{character}</span>
-      <div>skill check</div>
       <div className={"content"}>
         <Attributes character={character} />
         <Classes character={character} />
