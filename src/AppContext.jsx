@@ -6,20 +6,29 @@ const AppContext = React.createContext(null);
 
 export default AppContext;
 
+export const InitialAttributeValue = 10;
+export const InitialSkillValue = 0;
+
+// The initial values for the character attributes are set to 10.
 export const attributeListInitial = () => {
   return ATTRIBUTE_LIST.reduce((acc, curr) => {
-    acc[curr] = 10;
+    acc[curr] = InitialAttributeValue;
     return acc;
   }, {});
 };
 
+// The initial values for the character skills are set to 0.
 export const skillListInitial = () => {
   return SKILL_LIST.reduce((acc, curr) => {
-    acc[curr.name] = 0;
+    acc[curr.name] = InitialSkillValue;
     return acc;
   }, {});
 };
 
+/*
+AppContextProvider holds the states for characters, characterAttributes (character -> attributes), and characterSkills (character -> skills).
+It also fetches the saved data from the server and updates the states accordingly.
+*/
 export const AppContextProvider = ({ children }) => {
   const [characters, setCharacters] = React.useState(["character1"]);
 

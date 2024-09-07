@@ -69,15 +69,6 @@ const Skills = ({ character }) => {
                       (attributeModifiers[skill.attributeModifier] || 0)}
                   </td>
                 </tr>
-                // <SkillItem
-                //   key={skill.name}
-                //   name={skill.name}
-                //   value={0}
-                //   modifierName={skill.attributeModifier}
-                //   modifierValue={modifiers[skill.attributeModifier]}
-                //   onIncrease={() => {}}
-                //   onDecrease={() => {}}
-                // />
               );
             })}
           </tbody>
