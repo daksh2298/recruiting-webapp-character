@@ -44,7 +44,7 @@ export default function useAppContext() {
     };
     const requestEndpoint = `{${GitHubUsername}}/character`;
     try {
-      const resp = await axiosInstance.post(requestEndpoint, data);
+      await axiosInstance.post(requestEndpoint, data);
       alert("Data saved successfully");
     } catch (error) {
       console.error("Error saving data", error);

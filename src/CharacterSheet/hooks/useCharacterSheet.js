@@ -12,8 +12,14 @@ export function useCharacterSheet(character) {
     handleUpdateCharacterSkill,
   } = useAppContext();
 
-  const attributes = characterAttributes[character] || {};
-  const skills = characterSkills[character] || {};
+  const attributes = useMemo(
+    () => characterAttributes[character] || {},
+    [characterAttributes, character]
+  );
+  const skills = useMemo(
+    () => characterSkills[character] || {},
+    [characterSkills, character]
+  );
   const classes = Object.keys(CLASS_LIST);
 
   const updateAttribute = (attribute, value) => {
