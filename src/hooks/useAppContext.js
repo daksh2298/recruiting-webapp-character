@@ -1,5 +1,8 @@
 import { useContext } from "react";
-import AppContext from "../AppContext";
+import AppContext, {
+  attributeListInitial,
+  skillListInitial,
+} from "../AppContext";
 import axiosInstance from "../api/axiosInstance";
 import { GitHubUsername } from "../consts";
 
@@ -10,6 +13,7 @@ export default function useAppContext() {
     setCharacterAttributes,
     characterSkills,
     setCharacterSkills,
+    setCharacters,
   } = useContext(AppContext);
 
   const handleUpdateCharacterAttribute = (character, attribute, value) => {
@@ -47,7 +51,23 @@ export default function useAppContext() {
     }
   };
 
+  const addCharacter = () => {
+    const newCharacter = `character${characters.length + 1}`;
+    setCharacters([...characters, newCharacter]);
+
+    setCharacterAttributes({
+      ...characterAttributes,
+      [newCharacter]: attributeListInitial(),
+    });
+
+    setCharacterSkills({
+      ...characterSkills,
+      [newCharacter]: skillListInitial(),
+    });
+  };
+
   return {
+    addCharacter,
     characters,
     characterAttributes,
     characterSkills,

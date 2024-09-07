@@ -6,19 +6,36 @@ import Skills from "./Skills";
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+  }
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  margin: 20px;
+
+  .character-header {
+    font-size: 28px;
+    font-weight: 800;
+  }
 `;
 
 const CharacterSheetWrapper = ({ character }) => {
   return (
     <Wrapper>
-      <Attributes character={character} />
-      <Classes character={character} />
-      <Skills character={character} />
+      <span className={"character-header"}>{character}</span>
+      <div>skill check</div>
+      <div className={"content"}>
+        <Attributes character={character} />
+        <Classes character={character} />
+        <Skills character={character} />
+      </div>
     </Wrapper>
   );
 };

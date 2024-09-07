@@ -6,14 +6,14 @@ const AppContext = React.createContext(null);
 
 export default AppContext;
 
-const attributeListInitial = () => {
+export const attributeListInitial = () => {
   return ATTRIBUTE_LIST.reduce((acc, curr) => {
     acc[curr] = 10;
     return acc;
   }, {});
 };
 
-const skillListInitial = () => {
+export const skillListInitial = () => {
   return SKILL_LIST.reduce((acc, curr) => {
     acc[curr.name] = 0;
     return acc;
@@ -65,6 +65,7 @@ export const AppContextProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         characters,
+        setCharacters,
         characterAttributes,
         setCharacterAttributes,
         characterSkills,
