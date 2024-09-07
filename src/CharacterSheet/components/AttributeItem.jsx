@@ -16,10 +16,10 @@ const AttributeItemContainer = styled.div`
   }
 `;
 
-const AttributeItem = ({ name, value, onIncrease, onDecrease }) => {
+const AttributeItem = ({ name, value, modifier, onIncrease, onDecrease }) => {
   return (
     <AttributeItemContainer>
-      {name}
+      {name} (Modifier: {modifier})
       <div className={"controls"}>
         <button onClick={onDecrease}>-</button>
         {value}

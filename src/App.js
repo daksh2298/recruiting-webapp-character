@@ -8,7 +8,7 @@ function App() {
         <h1>React Coding Exercise</h1>
       </header>
       <section className="App-section">
-        <CharacterSheetWrapper />
+        <CharacterSheetWrapper character={"character1"} />
       </section>
     </div>
   );
