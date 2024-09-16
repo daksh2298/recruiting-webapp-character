@@ -1,42 +1,35 @@
-import { useContext } from "react";
 import AppContext, {
   attributeListInitial,
   skillListInitial,
 } from "../AppContext";
 import axiosInstance from "../api/axiosInstance";
 import { GitHubUsername } from "../consts";
+import { useContextSelector } from "use-context-selector";
 
 // This hooks contains functions to save all data, add a new character, and
 // generic functions to update the character attributes and skills.
 export default function useAppContext() {
-  const {
-    characters,
-    characterAttributes,
-    setCharacterAttributes,
-    characterSkills,
-    setCharacterSkills,
-    setCharacters,
-  } = useContext(AppContext);
+  const characters = useContextSelector(AppContext, (v) => v.characters);
+  const characterAttributes = useContextSelector(
+    AppContext,
+    (v) => v.characterAttributes
+  );
+  const characterSkills = useContextSelector(
+    AppContext,
+    (v) => v.characterSkills
+  );
 
-  const handleUpdateCharacterAttribute = (character, attribute, value) => {
-    setCharacterAttributes({
-      ...characterAttributes,
-      [character]: {
-        ...characterAttributes[character],
-        [attribute]: value,
-      },
-    });
-  };
+  const setCharacterAttributes = useContextSelector(
+    AppContext,
+    (v) => v.setCharacterAttributes
+  );
 
-  const handleUpdateCharacterSkill = (character, skill, value) => {
-    setCharacterSkills({
-      ...characterSkills,
-      [character]: {
-        ...characterSkills[character],
-        [skill]: value,
-      },
-    });
-  };
+  const setCharacterSkills = useContextSelector(
+    AppContext,
+    (v) => v.setCharacterSkills
+  );
+
+  const setCharacters = useContextSelector(AppContext, (v) => v.setCharacters);
 
   const handleSaveAllData = async () => {
     const data = {
@@ -73,8 +66,6 @@ export default function useAppContext() {
     characters,
     characterAttributes,
     characterSkills,
-    handleUpdateCharacterAttribute,
-    handleUpdateCharacterSkill,
     handleSaveAllData,
   };
 }

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { ATTRIBUTE_LIST, GitHubUsername, SKILL_LIST } from "./consts";
 import axiosInstance from "./api/axiosInstance";
+import { createContext } from "use-context-selector";
 
-const AppContext = React.createContext(null);
+const AppContext = createContext(null);
 
 export default AppContext;
 

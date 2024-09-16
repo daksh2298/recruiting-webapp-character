@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useCharacterSheet } from "./hooks/useCharacterSheet";
+import { useCharacterAttributes } from "./hooks/useCharacterSheet";
 import { CLASS_LIST } from "../consts";
 import { ClassContainer } from "./components";
+import useRenderCounter from "../hooks/useRenderCounter";
 
 const Classes = ({ character }) => {
-  const { qualifiedClassesMap } = useCharacterSheet(character);
+  const { qualifiedClassesMap } = useCharacterAttributes(character);
 
   const classes = Object.keys(CLASS_LIST);
   const [activeClassRequirements, setActiveClassRequirements] = useState("");
@@ -17,10 +18,10 @@ const Classes = ({ character }) => {
     setActiveClassRequirements("");
   };
 
-  console.log("qualifiedClassesMap", qualifiedClassesMap);
+  const renderCount = useRenderCounter();
   return (
     <ClassContainer>
-      <h2>Classes</h2>
+      <h2>Classes {renderCount}</h2>
       {classes.map((classType) => {
         return (
           <>
